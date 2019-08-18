@@ -114,7 +114,7 @@ public class ActionListenerPlayerListControl implements ActionListener, FocusLis
 			dewisDialogControl = new DSBDWZControl(mainControl);
 			try {
 				dewisDialogControl.makeDialog();
-				dewisDialogControl.makePlayerSearchList();
+//				dewisDialogControl.makePlayerSearchList();
 //				dewisDialogControl.getDialog.getVereinsAuswahl().addItemListener(dewisDialogActionListenerControl);
 			} catch (ArrayIndexOutOfBoundsException e) {
 				// TODO Auto-generated catch block

@@ -180,7 +180,7 @@ public class DSBDWZControl {
 		} else {
 			dialog.getVereinsSucheButton().addActionListener(dewisDialogActionListenerControl);
 		}
-
+		makePlayerSearchList();
 		dialog.getOkButton().addActionListener(dewisDialogActionListenerControl);
 		dialog.getCancelButton().addActionListener(dewisDialogActionListenerControl);
 		dialog.getOkButton().setEnabled(false);
@@ -446,6 +446,7 @@ public class DSBDWZControl {
 
 						@Override
 						public void keyReleased(final KeyEvent e) {
+							System.out.println(e.getKeyChar());
 							final SQLPlayerControl sqlpc = new SQLPlayerControl(mainControl);
 							spielerSearchPanelList = new DSBDWZPlayerView(Messages.getString("DewisDialogControl.11"));
 							makePlayerSearchSelectedList();
@@ -535,12 +536,12 @@ public class DSBDWZControl {
 		final ListIterator<Player> li = spielerListe.listIterator();
 		spielerSearchPanelList.makeSelectedList();
 		while (li.hasNext()) {
-			final Player tmp = li.next();
+			Player tmp = li.next();
 
 			spielerSearchPanelList.makeSelectedSpielerZeile(tmp, 2);
 
 		}
-		// spielerDewisView.makeSelectedList();
+//		 spielerDewisView.makeSelectedList();
 	}
 
 	/**
@@ -622,6 +623,4 @@ public class DSBDWZControl {
 		return playerListView;
 	}
 
-	
-	
 }
