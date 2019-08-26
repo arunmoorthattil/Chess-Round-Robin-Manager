@@ -53,7 +53,34 @@ public class ProgressBarView extends JDialog {
 		this.message = message;
 		createProgressBar();
 	}
+	public ProgressBarView(String message, String title) {
+		setTitle(title); // $NON-NLS-1$
+		this.message = message;
+		this.setAlwaysOnTop(true);
+		textLabel = new JLabel(message);
+		progressBar = new JProgressBar(0, 100);
+		progressBar.setOpaque(true);
+		progressBar.setVisible(true);
+		progressBar.setValue(0);
+		progressBar.setStringPainted(true);
+		panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(textLabel);
+		panel.add(progressBar);
+		// panel.setOpaque(true);
+		panel.setVisible(true);
+		add(panel);
 
+		// add(progressBar, BorderLayout.PAGE_START);
+		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		pack();
+		// setContentPane(panel);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		progressBar.setIndeterminate(true);
+		progressBar.paint(progressBar.getGraphics());
+		textLabel.paint(textLabel.getGraphics());
+	}
 	private void createProgressBar() {
 
 		this.setAlwaysOnTop(true);
@@ -66,11 +93,12 @@ public class ProgressBarView extends JDialog {
 		progressBar.setVisible(true);
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
+		progressBar.setIndeterminate(true);
+
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(textLabel);
 		panel.add(progressBar);
-		// panel.setOpaque(true);
 		panel.setVisible(true);
 		add(panel);
 
@@ -107,6 +135,24 @@ public class ProgressBarView extends JDialog {
 		num += addNumber * loop;
 
 		int value = (int) Math.round(num);
+		progressBar.setValue(value);
+		progressBar.paint(progressBar.getGraphics());
+		textLabel.paint(textLabel.getGraphics());
+		if (num >= 100) {
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException ex) {
+			}
+			this.dispose();
+		}
+
+	}
+
+	public void iteratesql() {
+		
+		num += 10;
+
+		int value = (int) Math.round( num );
 		progressBar.setValue(value);
 		progressBar.paint(progressBar.getGraphics());
 		textLabel.paint(textLabel.getGraphics());

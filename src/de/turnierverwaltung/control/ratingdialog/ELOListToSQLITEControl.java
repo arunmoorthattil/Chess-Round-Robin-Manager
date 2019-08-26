@@ -47,6 +47,8 @@ public class ELOListToSQLITEControl {
 	}
 
 	public void convertELOListToSQLITE() {
+		JOptionPane.showMessageDialog(mainControl, Messages.getString("DialogCreateSQLITEDWZBaseView.1"));
+
 		try {
 			String filename = prop.getPathToPlayersELO();
 			if (filename != null) {
@@ -94,7 +96,6 @@ public class ELOListToSQLITEControl {
 			ExceptionHandler eh = new ExceptionHandler(mainControl);
 			eh.fileSQLError(e.getMessage());
 		}
-
 	}
 
 	private String getDate() {

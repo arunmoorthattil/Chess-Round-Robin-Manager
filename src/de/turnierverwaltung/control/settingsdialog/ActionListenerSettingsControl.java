@@ -1,5 +1,6 @@
 package de.turnierverwaltung.control.settingsdialog;
 
+import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -129,6 +130,8 @@ public class ActionListenerSettingsControl {
 			}
 		});
 		esControl.getEigenschaftenView().getOpenPlayersCSVButton().addActionListener(new ActionListener() {
+//			private  Window component;
+
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				// spieler.csv
@@ -159,8 +162,14 @@ public class ActionListenerSettingsControl {
 						if (newFile.equals(".sqlite")) {
 							esControl.getEigenschaftenView().getConvertDWZToSQLITEButton().setEnabled(false);
 						} else {
-							esControl.getEigenschaftenView().getConvertDWZToSQLITEButton().setEnabled(true);
-
+							
+							mainControl.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+							final DWZListToSQLITEControl dwzL = new DWZListToSQLITEControl(mainControl);
+							dwzL.convertDWZListToSQLITE();
+							esControl.getEigenschaftenView()
+									.setOpenPlayersCSVLabel(mainControl.getPropertiesControl().getPathToPlayersCSV());
+							esControl.getEigenschaftenView().getConvertDWZToSQLITEButton().setEnabled(false);
+							mainControl.setCursor(Cursor.getDefaultCursor());
 						}
 					}
 				}
@@ -208,8 +217,12 @@ public class ActionListenerSettingsControl {
 						if (newFile.equals(".sqlite")) {
 							esControl.getEigenschaftenView().getConvertELOToSQLITEButton().setEnabled(false);
 						} else {
-							esControl.getEigenschaftenView().getConvertELOToSQLITEButton().setEnabled(true);
-
+							
+							final ELOListToSQLITEControl eloL = new ELOListToSQLITEControl(mainControl);
+							eloL.convertELOListToSQLITE();
+							esControl.getEigenschaftenView()
+									.setOpenPlayersELOLabel(mainControl.getPropertiesControl().getPathToPlayersELO());
+							esControl.getEigenschaftenView().getConvertELOToSQLITEButton().setEnabled(false);
 						}
 					}
 				}

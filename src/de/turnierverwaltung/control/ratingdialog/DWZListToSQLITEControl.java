@@ -47,9 +47,14 @@ public class DWZListToSQLITEControl {
 	}
 
 	public void convertDWZListToSQLITE() {
-		try {
+		JOptionPane.showMessageDialog(mainControl, Messages.getString("DialogCreateSQLITEDWZBaseView.1"));
+
+		try
+
+		{
 			String filename = prop.getPathToPlayersCSV();
 			if (filename != null) {
+
 				BufferedWriter writer;
 
 				int positionEXT = filename.lastIndexOf('.');
@@ -93,6 +98,8 @@ public class DWZListToSQLITEControl {
 		} catch (NullPointerException e) {
 			ExceptionHandler eh = new ExceptionHandler(mainControl);
 			eh.fileSQLError(e.getMessage());
+		} finally {
+
 		}
 
 	}

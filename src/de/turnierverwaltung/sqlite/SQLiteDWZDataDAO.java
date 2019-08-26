@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import de.turnierverwaltung.model.rating.DWZData;
 
 public class SQLiteDWZDataDAO implements DWZDataDAO {
@@ -73,14 +72,14 @@ public class SQLiteDWZDataDAO implements DWZDataDAO {
 	@Override
 	public void flush(final ArrayList<DWZData> csvDataArray) throws SQLException {
 		String sql;
-
+	
 		sql = "Insert into dwz_spieler (ZPS, Mgl_Nr, Status, Spielername, Geschlecht, Spielberechtigung, Geburtsjahr, Letzte_Auswertung, DWZ, DWZ_Index, FIDE_Elo, FIDE_Titel, FIDE_ID, FIDE_Land, idSpieler) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				+ ";";
 		if (dbConnect != null) {
 
 			final PreparedStatement preStm = dbConnect.prepareStatement(sql);
-
 			for (final DWZData dwzData : csvDataArray) {
+				
 				preStm.setString(1, dwzData.getCsvZPS());
 				preStm.setString(2, dwzData.getCsvMgl_Nr());
 				preStm.setString(3, dwzData.getCsvStatus());
