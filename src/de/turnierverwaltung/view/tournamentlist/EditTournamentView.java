@@ -22,6 +22,7 @@ import de.turnierverwaltung.model.EventDate;
 import de.turnierverwaltung.model.Tournament;
 import de.turnierverwaltung.view.ButtonPanelView;
 import de.turnierverwaltung.view.DateChooserPanel;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.OwnLabel;
 
@@ -80,7 +81,6 @@ public class EditTournamentView extends JDialog {
 
 	public EditTournamentView(final Tournament turnier) {
 		textFieldGruppenName = new JTextField[turnier.getAnzahlGruppen()];
-
 		playerOfGroupButtons = new JButton[turnier.getAnzahlGruppen()];
 		// deleteButtons = new JButton[turnier.getAnzahlGruppen()];
 
@@ -90,6 +90,8 @@ public class EditTournamentView extends JDialog {
 		property.put("text.year", Messages.getString("TurnierEditierenView.7")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		textFieldTurnierName = new JTextField(20);
+		JTextFieldRegularPopupMenu.addTo(textFieldTurnierName);
+
 		// setAlwaysOnTop(true);
 		setTitle(Messages.getString("TurnierEditierenView.10")); //$NON-NLS-1$
 		// setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -155,6 +157,8 @@ public class EditTournamentView extends JDialog {
 			textFieldGruppenName[i] = new JTextField(15);
 			textFieldGruppenName[i].setText(turnier.getGruppe()[i].getGruppenName());
 			playerOfGroupButtons[i] = new JButton(Messages.getString("TurnierEditierenView.15"), playerIcon);
+			JTextFieldRegularPopupMenu.addTo(textFieldGruppenName[i]);
+
 			label = new OwnLabel();
 			label.setText(Messages.getString("TurnierEditierenView.14") + (i + 1));
 			// deleteButtons[i] = new JButton(Messages.getString("TurnierEditierenView.16"),

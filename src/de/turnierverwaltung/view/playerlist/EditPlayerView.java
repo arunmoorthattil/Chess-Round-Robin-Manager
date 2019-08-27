@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import de.turnierverwaltung.model.Player;
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.OwnLabel;
 
@@ -67,7 +68,7 @@ public class EditPlayerView extends JDialog {
 
 		JPanel centerPane = new JPanel();
 		centerPane.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+		JTextFieldRegularPopupMenu.addTo(textFieldForename);
 		textFieldForename.setText(spieler.getForename());
 		OwnLabel label = new OwnLabel();
 		// label.setPreferredSize(dim);
@@ -77,7 +78,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldForename);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldSurname);
 		textFieldSurname.setText(spieler.getSurname());
 		label = new OwnLabel();
 		label.setText(Messages.getString("SpielerEditierenView.11")); //$NON-NLS-1$
@@ -86,7 +87,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldSurname);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldKuerzel);
 		textFieldKuerzel.setText(spieler.getKuerzel());
 		label = new OwnLabel();
 
@@ -96,7 +97,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldKuerzel);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldDwz);
 		textFieldDwz.setText(spieler.getDwz());
 		label = new OwnLabel();
 
@@ -106,7 +107,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldDwz);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldDwzIndex);
 		textFieldDwzIndex.setText(Integer.toString(spieler.getDwzData().getCsvIndex()));
 		label = new OwnLabel();
 
@@ -129,7 +130,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textComboBoxAge);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldZPS);
 		textFieldZPS.setText(spieler.getDwzData().getCsvZPS());
 		label = new OwnLabel();
 
@@ -139,7 +140,7 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldZPS);
 		contentPanel.add(centerPane);
-
+		JTextFieldRegularPopupMenu.addTo(textFieldMGL);
 		textFieldMGL.setText(spieler.getDwzData().getCsvMgl_Nr());
 		label = new OwnLabel();
 
@@ -157,7 +158,10 @@ public class EditPlayerView extends JDialog {
 		if (spieler.getEloData().getFideid() > 0) {
 			fideId = spieler.getEloData().getFideid();
 		}
+		JTextFieldRegularPopupMenu.addTo(textFieldFideId);
+
 		if (fideId > 0) {
+
 			textFieldFideId.setText(Integer.toString(fideId));
 		}
 		label = new OwnLabel();
@@ -177,7 +181,10 @@ public class EditPlayerView extends JDialog {
 		if (spieler.getEloData().getRating() > 0) {
 			elo = spieler.getEloData().getRating();
 		}
+		JTextFieldRegularPopupMenu.addTo(textFieldELO);
+
 		if (elo > 0) {
+
 			textFieldELO.setText(Integer.toString(elo));
 		}
 		label = new OwnLabel();
@@ -188,16 +195,6 @@ public class EditPlayerView extends JDialog {
 		centerPane.add(label);
 		centerPane.add(textFieldELO);
 		contentPanel.add(centerPane);
-
-		// label = new OwnLabel();
-		//
-		// label.setText(Messages.getString("SpielerEditierenView.18")); //$NON-NLS-1$
-		// centerPane = new JPanel();
-		// centerPane.setLayout(new FlowLayout(FlowLayout.LEFT));
-		// centerPane.add(label);
-		// centerPane.add(tournamentsButton);
-		//
-		// contentPanel.add(centerPane);
 
 		contentPanel.add(buttonPane);
 		add(contentPanel);

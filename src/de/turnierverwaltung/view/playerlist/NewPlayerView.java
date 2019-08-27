@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 
 import de.turnierverwaltung.model.TournamentConstants;
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 
 public class NewPlayerView extends JDialog {
@@ -45,6 +46,8 @@ public class NewPlayerView extends JDialog {
 	private JButton cancelButton;
 	private JTextField textFieldKuerzel;
 	private JTextField textFieldDwz;
+	private JTextField textFieldElo;
+
 	private final ButtonPanelView buttonPane;
 	private JPanel centerPane;
 	private final JPanel contentPanel;
@@ -108,6 +111,14 @@ public class NewPlayerView extends JDialog {
 		return textComboBoxAge;
 	}
 
+	public JTextField getTextFieldElo() {
+		return textFieldElo;
+	}
+
+	public void setTextFieldElo(JTextField textFieldElo) {
+		this.textFieldElo = textFieldElo;
+	}
+
 	public JTextField getTextFieldDwz() {
 		return textFieldDwz;
 	}
@@ -157,9 +168,20 @@ public class NewPlayerView extends JDialog {
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
 		centerPane = new JPanel();
 		textFieldForeName = new JTextField(15);
+		JTextFieldRegularPopupMenu.addTo(textFieldForeName);
+
 		textFieldSurName = new JTextField(15);
+		JTextFieldRegularPopupMenu.addTo(textFieldSurName);
+
 		textFieldKuerzel = new JTextField(15);
+		JTextFieldRegularPopupMenu.addTo(textFieldKuerzel);
+
 		textFieldDwz = new JTextField(15);
+		JTextFieldRegularPopupMenu.addTo(textFieldDwz);
+
+		textFieldElo = new JTextField(15);
+		JTextFieldRegularPopupMenu.addTo(textFieldElo);
+
 		centerPane.setLayout(new FlowLayout(FlowLayout.LEFT));
 		// centerPane.setBackground(new Color(249, 222, 112));
 		final Dimension dim = new Dimension(90, 30);
@@ -186,6 +208,13 @@ public class NewPlayerView extends JDialog {
 		label.setText(Messages.getString("SpielerHinzufuegenView.5"));
 		centerPane.add(label); // $NON-NLS-1$
 		centerPane.add(textFieldDwz);
+
+		label = new JLabel();
+		label.setPreferredSize(dim);
+		label.setText(Messages.getString("SpielerHinzufuegenView.14"));
+		centerPane.add(label); // $NON-NLS-1$
+		centerPane.add(textFieldElo);
+
 		final String[] ageStrings = { Messages.getString("SpielerHinzufuegenView.6"), //$NON-NLS-1$
 				Messages.getString("SpielerHinzufuegenView.7"), Messages.getString("SpielerHinzufuegenView.8") }; //$NON-NLS-1$ //$NON-NLS-2$
 		textComboBoxAge = new JComboBox<String>(ageStrings);

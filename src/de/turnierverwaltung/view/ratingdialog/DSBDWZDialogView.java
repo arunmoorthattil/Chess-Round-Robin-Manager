@@ -39,6 +39,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 
 public class DSBDWZDialogView extends JDialog {
@@ -115,6 +116,7 @@ public class DSBDWZDialogView extends JDialog {
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		vereinsSuche = new JTextField(25);
+		JTextFieldRegularPopupMenu.addTo(vereinsSuche);
 		final JPanel suchePanel = new JPanel();
 		suchePanel.setLayout(new BoxLayout(suchePanel, BoxLayout.PAGE_AXIS));
 		if (cvsFiles == false) {

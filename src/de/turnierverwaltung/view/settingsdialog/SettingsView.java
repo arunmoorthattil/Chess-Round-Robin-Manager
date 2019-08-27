@@ -48,6 +48,7 @@ import javax.swing.border.Border;
 
 import de.turnierverwaltung.model.TournamentConstants;
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.SpinnerView;
 import de.turnierverwaltung.view.TitleLabelView;
@@ -508,6 +509,7 @@ public class SettingsView extends JPanel {
 
 		labelHeader = new JLabel(Messages.getString("EigenschaftenView.72")); //$NON-NLS-1$
 		tableCSSTextField = new JTextField(40);
+		JTextFieldRegularPopupMenu.addTo(tableCSSTextField);
 		tableCSSTextField.setPreferredSize(dimTextField);
 
 		JPanel htmlPanelLabel = new JPanel();
@@ -551,6 +553,7 @@ public class SettingsView extends JPanel {
 
 		labelHeader = new JLabel(Messages.getString("EigenschaftenView.41")); //$NON-NLS-1$
 		webserverPathTextField = new JTextField(40);
+		JTextFieldRegularPopupMenu.addTo(webserverPathTextField);
 		webserverPathTextField.setPreferredSize(dimTextField);
 		htmlPanelLabel = new JPanel();
 		htmlPanelLabel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -650,48 +653,49 @@ public class SettingsView extends JPanel {
 		final int textFieldColumns = 9;
 		oldDWZTextField = new JTextField(TournamentConstants.TABLE_COLUMN_OLD_DWZ, textFieldColumns);
 		oldDWZTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(oldDWZTextField);
 		newDWZTextField = new JTextField(TournamentConstants.TABLE_COLUMN_NEW_DWZ, textFieldColumns);
 		newDWZTextField.setPreferredSize(dimTextField);
+		JTextFieldRegularPopupMenu.addTo(newDWZTextField);
 		oldELOTextField = new JTextField(TournamentConstants.TABLE_COLUMN_OLD_ELO, textFieldColumns);
 		oldELOTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(oldELOTextField);
 		newELOTextField = new JTextField(TournamentConstants.TABLE_COLUMN_NEW_ELO, textFieldColumns);
 		newELOTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(newELOTextField);
 		pointsTextField = new JTextField(TournamentConstants.TABLE_COLUMN_POINTS, textFieldColumns);
 		pointsTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(pointsTextField);
 		sbbTextField = new JTextField(TournamentConstants.TABLE_COLUMN_SONNEBORNBERGER, textFieldColumns);
 		sbbTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(sbbTextField);
 		rankingTextField = new JTextField(TournamentConstants.TABLE_COLUMN_RANKING, textFieldColumns);
 		rankingTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(rankingTextField);
 		roundTextField = new JTextField(TournamentConstants.TABLE_COLUMN_ROUND, textFieldColumns);
 		roundTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(roundTextField);
 		whiteTextField = new JTextField(TournamentConstants.TABLE_COLUMN_WHITE, textFieldColumns);
 		whiteTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(whiteTextField);
 		blackTextField = new JTextField(TournamentConstants.TABLE_COLUMN_BLACK, textFieldColumns);
 		blackTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(blackTextField);
 		resultTextField = new JTextField(TournamentConstants.TABLE_COLUMN_RESULT, textFieldColumns);
 		resultTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(resultTextField);
 		meetingTextField = new JTextField(TournamentConstants.TABLE_COLUMN_MEETING, textFieldColumns);
 		meetingTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(meetingTextField);
 		playerTextField = new JTextField(TournamentConstants.TABLE_COLUMN_PLAYER, textFieldColumns);
 		playerTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(playerTextField);
 		roundTextField = new JTextField(TournamentConstants.TABLE_COLUMN_ROUND, textFieldColumns);
 		roundTextField.setPreferredSize(dimTextField);
-
+		JTextFieldRegularPopupMenu.addTo(roundTextField);
 		spielfreiTextField = new JTextField(TournamentConstants.SPIELFREI, textFieldColumns);
 		spielfreiTextField.setPreferredSize(dimTextField);
-		
+		JTextFieldRegularPopupMenu.addTo(spielfreiTextField);
 		final Dimension dim = new Dimension(175, 30);
 		final JLabel oldDWZTextFieldLabel = new JLabel(Messages.getString("EigenschaftenView.22") + ":");
 		oldDWZTextFieldLabel.setPreferredSize(dim);
@@ -729,10 +733,10 @@ public class SettingsView extends JPanel {
 
 		final JLabel roundTextFieldLabel = new JLabel(Messages.getString("EigenschaftenView.36") + ":");
 		roundTextFieldLabel.setPreferredSize(dim);
-		
+
 		final JLabel spielfreiTextFieldLabel = new JLabel(Messages.getString("EigenschaftenView.76") + ":");
 		spielfreiTextFieldLabel.setPreferredSize(dim);
-		
+
 		titleView = new TitleLabelView(Messages.getString("EigenschaftenView.37"));
 		titleView.setFlowLayoutLeft();
 		// JLabel leftTitleLabel = new
@@ -831,7 +835,7 @@ public class SettingsView extends JPanel {
 		htmlPanel.add(spielfreiTextFieldLabel);
 		htmlPanel.add(spielfreiTextField);
 		rightPanel.add(htmlPanel);
-		
+
 		final JPanel leftP = new JPanel();
 		leftP.setLayout(new BorderLayout());
 		leftP.add(leftPanel, BorderLayout.NORTH);

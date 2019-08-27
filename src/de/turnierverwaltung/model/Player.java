@@ -56,7 +56,7 @@ public class Player implements Comparable<Object> {
 		spielerId = -1;
 		dwzData.setCsvZPS("");
 		dwzData.setCsvMgl_Nr("");
-
+		eloData.setFideid(-1);
 	}
 
 	public Player(final DWZData dwzData) {
@@ -534,4 +534,20 @@ public class Player implements Comparable<Object> {
 		cutSurname();
 	}
 
+	public void setElo(final int elo) {
+
+		eloData.setRating(elo);
+	}
+
+	public void setElo(final String elo) {
+		try {
+			eloData.setRating(Integer.parseInt(elo));
+		} catch (final NumberFormatException e) {
+			eloData.setRating(0);
+		}
+	}
+
+	public int getElo() {
+		return eloData.getRating();
+	}
 }

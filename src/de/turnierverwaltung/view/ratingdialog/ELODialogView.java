@@ -29,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 
 public class ELODialogView extends JDialog {
@@ -78,7 +79,7 @@ public class ELODialogView extends JDialog {
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		vereinsSuche = new JTextField(25);
-
+		JTextFieldRegularPopupMenu.addTo(vereinsSuche);
 		dsbPanel = new JPanel();
 		playerSearchView = new PlayerSearchView(Messages.getString("ELOPlayerView.1"));
 

@@ -49,6 +49,8 @@ public class ActionListenerPlayerListControl implements ActionListener, FocusLis
 
 					String kuerzel = spielerHinzufuegenView.getTextFieldKuerzel().getText();
 					String dwz = spielerHinzufuegenView.getTextFieldDwz().getText();
+					String elo = spielerHinzufuegenView.getTextFieldElo().getText();
+
 					int age = spielerHinzufuegenView.getTextComboBoxAge().getSelectedIndex();
 					neuerSpieler = new Player();
 					// neuerSpieler.setForename(forename);
@@ -56,6 +58,7 @@ public class ActionListenerPlayerListControl implements ActionListener, FocusLis
 					neuerSpieler.setName(surname + "," + forename);
 					neuerSpieler.setKuerzel(kuerzel);
 					neuerSpieler.setDwz(dwz);
+					neuerSpieler.setElo(elo);
 					neuerSpieler.setAge(age);
 					SQLPlayerControl stc = new SQLPlayerControl(mainControl);
 
@@ -67,6 +70,7 @@ public class ActionListenerPlayerListControl implements ActionListener, FocusLis
 					spielerHinzufuegenView.getTextFieldSurName().setEditable(false);
 					spielerHinzufuegenView.getTextFieldKuerzel().setEditable(false);
 					spielerHinzufuegenView.getTextFieldDwz().setEditable(false);
+					spielerHinzufuegenView.getTextFieldElo().setEditable(false);
 					spielerHinzufuegenView.getTextComboBoxAge().setEnabled(false);
 					spielerHinzufuegenView.spielerPanel();
 					spielerHinzufuegenView.getTextFieldKuerzel().addFocusListener(this);

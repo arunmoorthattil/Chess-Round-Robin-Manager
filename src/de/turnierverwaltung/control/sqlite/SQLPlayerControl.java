@@ -27,6 +27,7 @@ import de.turnierverwaltung.model.Player;
 import de.turnierverwaltung.model.Tournament;
 import de.turnierverwaltung.model.TournamentConstants;
 import de.turnierverwaltung.model.rating.DWZData;
+import de.turnierverwaltung.model.rating.ELOData;
 import de.turnierverwaltung.sqlite.DAOFactory;
 import de.turnierverwaltung.sqlite.DWZDataDAO;
 import de.turnierverwaltung.sqlite.ELODataDAO;
@@ -136,7 +137,14 @@ public class SQLPlayerControl {
 					spieler.setName(spieler.getDwzData().getCsvSpielername());
 					spieler.copyDWZDataToELOData();
 					mySQLELODataDAO.insertELO(spieler.getEloData());
+				} else {
+					if (spieler.getEloData().getRating() > 0) {
+						spieler.getEloData().setName(spieler.getName());
+						spieler.getEloData().setSpielerId(spieler.getSpielerId());
+						mySQLELODataDAO.insertELO(spieler.getEloData());
+					}
 				}
+
 			}
 		}
 
@@ -202,7 +210,8 @@ public class SQLPlayerControl {
 			if (spieler.getDwzData().getSpielerId() > 0) {
 				mySQLDWZDataDAO.deleteDWZ(spieler.getSpielerId());
 			}
-			if (spieler.getEloData().getFideid() > 0) {
+			final ELOData dbeloData = mySQLELODataDAO.getELOData(spieler.getSpielerId());
+			if (dbeloData.getSpielerId() == spieler.getSpielerId()) {
 				mySQLELODataDAO.deleteELO(spieler.getSpielerId());
 			}
 		}
@@ -240,11 +249,10 @@ public class SQLPlayerControl {
 
 		mySQLSpielerDAO.updateSpieler(spieler);
 		final DWZData dbData = mySQLDWZDataDAO.getDWZData(spieler.getSpielerId());
-		if (spieler.getDWZ() > 0) {
+		if (dbData.getSpielerId() > 0) {
 			if (dbData.getSpielerId() == spieler.getSpielerId()) {
 				mySQLDWZDataDAO.updateDWZ(spieler.getDwzData());
-			} 
-			else {
+			} else {
 
 				spieler.setDwzData(new DWZData());
 
@@ -256,23 +264,54 @@ public class SQLPlayerControl {
 				mySQLDWZDataDAO.insertDWZ(spieler.getDwzData());
 			}
 		} else {
-			if (dbData.getSpielerId() == spieler.getSpielerId()) {
-				if (spieler.getDwzData().getCsvZPS().length() == 0) {
-					mySQLDWZDataDAO.deleteDWZ(spieler.getSpielerId());
+			spieler.setDwzData(new DWZData());
+			spieler.getDwzData().setSpielerId(spieler.getSpielerId());
+			spieler.getDwzData().setCsvDWZ(spieler.getDWZ());
+			spieler.getDwzData().setAge(spieler.getAge());
+			spieler.getDwzData().setCsvSpielername(spieler.getName());
 
-				} else {
-					spieler.getDwzData().setCsvDWZ(0);
-					mySQLDWZDataDAO.updateDWZ(spieler.getDwzData());
-				}
-			}
+			mySQLDWZDataDAO.insertDWZ(spieler.getDwzData());
 		}
-		if (spieler.getEloData().getFideid() > 0) {
-			mySQLELODataDAO.updateELO(spieler.getEloData());
-		} else {
-			if (spieler.getDwzData().getCsvFIDE_ID() > 0) {
-				spieler.copyDWZDataToELOData();
+
+		final ELOData dbeloData = mySQLELODataDAO.getELOData(spieler.getSpielerId());
+		if (dbeloData.getSpielerId() > 0) {
+
+			if (dbeloData.getSpielerId() == spieler.getSpielerId()) {
+				if (spieler.getEloData().getFideid() > 0) {
+					mySQLELODataDAO.updateELO(spieler.getEloData());
+				} else {
+					if (spieler.getDwzData().getCsvFIDE_ID() > 0) {
+						spieler.copyDWZDataToELOData();
+						mySQLELODataDAO.updateELO(spieler.getEloData());
+
+					} else {
+						if (spieler.getEloData().getRating() > 0) {
+							spieler.getEloData().setName(spieler.getName());
+							spieler.getEloData().setSpielerId(spieler.getSpielerId());
+							mySQLELODataDAO.updateELO(spieler.getEloData());
+
+						}
+					}
+				}
+			} else {
+				spieler.setEloData(new ELOData());
+
+				spieler.getEloData().setSpielerId(spieler.getSpielerId());
+				spieler.getEloData().setRating(spieler.getElo());
+				spieler.getEloData().setAge(spieler.getAge());
+				spieler.getEloData().setName(spieler.getName());
+
 				mySQLELODataDAO.insertELO(spieler.getEloData());
 			}
+		} else {
+			spieler.setEloData(new ELOData());
+
+			spieler.getEloData().setSpielerId(spieler.getSpielerId());
+			spieler.getEloData().setRating(spieler.getElo());
+			spieler.getEloData().setAge(spieler.getAge());
+			spieler.getEloData().setName(spieler.getName());
+
+			mySQLELODataDAO.insertELO(spieler.getEloData());
 		}
 	}
 

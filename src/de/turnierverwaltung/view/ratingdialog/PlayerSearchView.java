@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 
 public class PlayerSearchView extends JPanel {
@@ -24,6 +25,8 @@ public class PlayerSearchView extends JPanel {
 
 	public PlayerSearchView(String title) {
 		searchField = new JTextField(20);
+		JTextFieldRegularPopupMenu.addTo(searchField);
+
 		JLabel searchFieldLabel = new JLabel(Messages.getString("PlayerSearchView.0"));
 		setLayout(new BorderLayout());
 		JPanel searchPanel = new JPanel();

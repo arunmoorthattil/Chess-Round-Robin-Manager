@@ -113,7 +113,7 @@ public class SQLiteELODataDAO implements ELODataDAO {
 			stmt = dbConnect.createStatement();
 			final ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				eloData.setSpielerId(id);
+//				eloData.setSpielerId(id);
 				eloData.setName(rs.getString("Name"));
 				eloData.setCountry(rs.getString("Fed"));
 				eloData.setSex(rs.getString("Sex"));
@@ -305,6 +305,35 @@ public class SQLiteELODataDAO implements ELODataDAO {
 
 		}
 
+	}
+
+	@Override
+	public boolean spielerIdExist(int spielerId) throws SQLException {
+		final String sql = "Select idSpieler from elo_data where idSpieler = '" + spielerId + ";";
+
+		int id = -1;
+		Statement stmt;
+		if (dbConnect != null) {
+
+			try {
+				stmt = dbConnect.createStatement();
+				final ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					id = rs.getInt("idSpieler");
+
+				}
+				stmt.close();
+			} catch (final SQLException e) {
+				id = -1;
+
+			}
+		}
+		Boolean returnStatement = false;
+		if (id > 0) {
+			returnStatement = true;
+		}
+
+		return returnStatement;
 	}
 
 }

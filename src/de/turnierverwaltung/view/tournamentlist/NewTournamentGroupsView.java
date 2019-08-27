@@ -35,6 +35,7 @@ import javax.swing.border.EtchedBorder;
 
 import de.turnierverwaltung.model.TournamentConstants;
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.SpinnerView;
 
@@ -122,6 +123,7 @@ public class NewTournamentGroupsView extends JPanel {
 			final JPanel groupBox = new JPanel();
 			groupBox.setLayout(new FlowLayout(FlowLayout.LEFT));
 			gruppenNameTextField[i] = new JTextField();
+			JTextFieldRegularPopupMenu.addTo(gruppenNameTextField[i]);
 			gruppenNameTextField[i].setColumns(10);
 			final JPanel gruppenLabelPanel = new JPanel();
 			gruppenLabelPanel.setLayout(new FlowLayout(FlowLayout.LEFT));

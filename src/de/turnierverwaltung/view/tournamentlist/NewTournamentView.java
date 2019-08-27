@@ -43,6 +43,7 @@ import de.turnierverwaltung.model.Tournament;
 import de.turnierverwaltung.model.TournamentConstants;
 import de.turnierverwaltung.view.ButtonPanelView;
 import de.turnierverwaltung.view.DateChooserPanel;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.SpinnerView;
 
@@ -126,6 +127,7 @@ public class NewTournamentView extends JPanel {
 		final JLabel lblTurniername = new JLabel(Messages.getString("TurnierView.8")); //$NON-NLS-1$
 
 		turnierNameTextField = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(turnierNameTextField);
 		turnierNameTextField.setColumns(20);
 		panel1.add(turnierNameTextField);
 		panel1.add(lblTurniername);

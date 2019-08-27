@@ -72,14 +72,14 @@ public class SQLiteDWZDataDAO implements DWZDataDAO {
 	@Override
 	public void flush(final ArrayList<DWZData> csvDataArray) throws SQLException {
 		String sql;
-	
+
 		sql = "Insert into dwz_spieler (ZPS, Mgl_Nr, Status, Spielername, Geschlecht, Spielberechtigung, Geburtsjahr, Letzte_Auswertung, DWZ, DWZ_Index, FIDE_Elo, FIDE_Titel, FIDE_ID, FIDE_Land, idSpieler) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				+ ";";
 		if (dbConnect != null) {
 
 			final PreparedStatement preStm = dbConnect.prepareStatement(sql);
 			for (final DWZData dwzData : csvDataArray) {
-				
+
 				preStm.setString(1, dwzData.getCsvZPS());
 				preStm.setString(2, dwzData.getCsvMgl_Nr());
 				preStm.setString(3, dwzData.getCsvStatus());
@@ -117,7 +117,7 @@ public class SQLiteDWZDataDAO implements DWZDataDAO {
 			stmt = dbConnect.createStatement();
 			final ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				dwzData.setSpielerId(spielerId);
+				dwzData.setSpielerId(rs.getInt("idSpieler"));
 				dwzData.setCsvZPS(rs.getString("ZPS"));
 				dwzData.setCsvMgl_Nr(rs.getString("Mgl_Nr"));
 				dwzData.setCsvStatus(rs.getString("Status"));

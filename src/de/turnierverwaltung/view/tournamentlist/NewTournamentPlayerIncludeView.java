@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import de.turnierverwaltung.view.ButtonPanelView;
+import de.turnierverwaltung.view.JTextFieldRegularPopupMenu;
 import de.turnierverwaltung.view.Messages;
 
 public class NewTournamentPlayerIncludeView extends JPanel {
@@ -85,11 +86,14 @@ public class NewTournamentPlayerIncludeView extends JPanel {
 			line.setLayout(new BoxLayout(line, BoxLayout.X_AXIS));
 			JLabel label1 = new JLabel(" " + Messages.getString("SpielerEingabeView.14"));
 			forenameTextfield = new JTextField(10);
+			JTextFieldRegularPopupMenu.addTo(forenameTextfield);
 			forenameTextfield.setEnabled(false);
 			forenameTextfield.setDisabledTextColor(Color.BLACK);
 			JLabel label2 = new JLabel(" " + Messages.getString("SpielerEingabeView.15"));
 
 			surnameTextfield = new JTextField(10);
+			JTextFieldRegularPopupMenu.addTo(surnameTextfield);
+
 			surnameTextfield.setEnabled(false);
 			surnameTextfield.setDisabledTextColor(Color.BLACK);
 			playerAddButton = new JButton(Messages.getString("SpielerEingabeView.7"));
@@ -102,6 +106,8 @@ public class NewTournamentPlayerIncludeView extends JPanel {
 
 			JLabel label3 = new JLabel(Messages.getString("SpielerEingabeView.8")); //$NON-NLS-1$
 			kuerzelTextfield = new JTextField(10);
+			JTextFieldRegularPopupMenu.addTo(kuerzelTextfield);
+
 			kuerzelTextfield.setEnabled(false);
 			kuerzelTextfield.setDisabledTextColor(Color.BLACK);
 			line.add(label3);
@@ -110,6 +116,7 @@ public class NewTournamentPlayerIncludeView extends JPanel {
 			JLabel label4 = new JLabel(Messages.getString("SpielerEingabeView.9")); //$NON-NLS-1$
 			dwzTextfield = new JTextField(10);
 			dwzTextfield.setEnabled(false);
+			JTextFieldRegularPopupMenu.addTo(dwzTextfield);
 
 			dwzTextfield.setDisabledTextColor(Color.BLACK);
 			line.add(label4);
