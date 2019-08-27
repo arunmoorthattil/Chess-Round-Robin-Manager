@@ -233,18 +233,22 @@ public class PlayerListControl {
 								spieler.get(spielerIndex).setSurname(surName);
 								spieler.get(spielerIndex).setKuerzel(kuerzel);
 								spieler.get(spielerIndex).setDwz(dwzInt);
+								spieler.get(spielerIndex).getDwzData()
+										.setSpielerId(spieler.get(spielerIndex).getSpielerId());
+
 								spieler.get(spielerIndex).getDwzData().setCsvDWZ(dwzInt);
 								spieler.get(spielerIndex).getDwzData().setCsvZPS(zps);
 								spieler.get(spielerIndex).getDwzData().setCsvMgl_Nr(mgl);
 								spieler.get(spielerIndex).getDwzData().setCsvIndex(dwzindex);
-								if (fideId > 0) {
+								if (fideId > 0 || rating > 0) {
+									spieler.get(spielerIndex).getEloData()
+											.setSpielerId(spieler.get(spielerIndex).getSpielerId());
+									spieler.get(spielerIndex).getEloData().setRating(rating);
+
 									spieler.get(spielerIndex).getDwzData().setCsvFIDE_ID(fideId);
 									spieler.get(spielerIndex).getEloData().setFideid(fideId);
 								}
-								if (rating > 0) {
-									spieler.get(spielerIndex).getDwzData().setCsvFIDE_Elo(rating);
-									spieler.get(spielerIndex).getEloData().setRating(rating);
-								}
+
 								spieler.get(spielerIndex).setAge(age);
 								// spieler.get(spielerIndex).extractForenameAndSurenameToName();
 								spieler.get(spielerIndex).setName(name);

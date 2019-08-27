@@ -434,7 +434,7 @@ public class SQLiteDWZDataDAO implements DWZDataDAO {
 			preStm.setString(12, dwzData.getCsvFIDE_Titel());
 			preStm.setInt(13, dwzData.getCsvFIDE_ID());
 			preStm.setString(14, dwzData.getCsvFIDE_Land());
-			// preStm.setInt(15, dwzData.getSpielerId());
+//			 preStm.setInt(15, dwzData.getSpielerId());
 			preStm.addBatch();
 			dbConnect.setAutoCommit(false);
 			preStm.executeBatch();

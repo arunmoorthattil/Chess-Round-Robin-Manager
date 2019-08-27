@@ -249,22 +249,12 @@ public class SQLPlayerControl {
 
 		mySQLSpielerDAO.updateSpieler(spieler);
 		final DWZData dbData = mySQLDWZDataDAO.getDWZData(spieler.getSpielerId());
-		if (dbData.getSpielerId() > 0) {
-			if (dbData.getSpielerId() == spieler.getSpielerId()) {
-				mySQLDWZDataDAO.updateDWZ(spieler.getDwzData());
-			} else {
 
-				spieler.setDwzData(new DWZData());
+		if (dbData.getSpielerId() == spieler.getSpielerId() && dbData.getSpielerId() > 0) {
+			mySQLDWZDataDAO.updateDWZ(spieler.getDwzData());
 
-				spieler.getDwzData().setSpielerId(spieler.getSpielerId());
-				spieler.getDwzData().setCsvDWZ(spieler.getDWZ());
-				spieler.getDwzData().setAge(spieler.getAge());
-				spieler.getDwzData().setCsvSpielername(spieler.getName());
-
-				mySQLDWZDataDAO.insertDWZ(spieler.getDwzData());
-			}
 		} else {
-			spieler.setDwzData(new DWZData());
+//			spieler.setDwzData(new DWZData());
 			spieler.getDwzData().setSpielerId(spieler.getSpielerId());
 			spieler.getDwzData().setCsvDWZ(spieler.getDWZ());
 			spieler.getDwzData().setAge(spieler.getAge());
@@ -274,37 +264,12 @@ public class SQLPlayerControl {
 		}
 
 		final ELOData dbeloData = mySQLELODataDAO.getELOData(spieler.getSpielerId());
-		if (dbeloData.getSpielerId() > 0) {
 
-			if (dbeloData.getSpielerId() == spieler.getSpielerId()) {
-				if (spieler.getEloData().getFideid() > 0) {
-					mySQLELODataDAO.updateELO(spieler.getEloData());
-				} else {
-					if (spieler.getDwzData().getCsvFIDE_ID() > 0) {
-						spieler.copyDWZDataToELOData();
-						mySQLELODataDAO.updateELO(spieler.getEloData());
+		if (dbeloData.getSpielerId() == spieler.getSpielerId() && dbeloData.getSpielerId() > 0) {
+			mySQLELODataDAO.updateELO(spieler.getEloData());
 
-					} else {
-						if (spieler.getEloData().getRating() > 0) {
-							spieler.getEloData().setName(spieler.getName());
-							spieler.getEloData().setSpielerId(spieler.getSpielerId());
-							mySQLELODataDAO.updateELO(spieler.getEloData());
-
-						}
-					}
-				}
-			} else {
-				spieler.setEloData(new ELOData());
-
-				spieler.getEloData().setSpielerId(spieler.getSpielerId());
-				spieler.getEloData().setRating(spieler.getElo());
-				spieler.getEloData().setAge(spieler.getAge());
-				spieler.getEloData().setName(spieler.getName());
-
-				mySQLELODataDAO.insertELO(spieler.getEloData());
-			}
 		} else {
-			spieler.setEloData(new ELOData());
+//			spieler.setEloData(new ELOData());
 
 			spieler.getEloData().setSpielerId(spieler.getSpielerId());
 			spieler.getEloData().setRating(spieler.getElo());
@@ -313,6 +278,7 @@ public class SQLPlayerControl {
 
 			mySQLELODataDAO.insertELO(spieler.getEloData());
 		}
+
 	}
 
 	public boolean updateSpieler(final int gruppe) throws SQLException {

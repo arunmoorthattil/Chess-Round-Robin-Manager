@@ -1,69 +1,91 @@
 package de.turnierverwaltung.view;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import javax.swing.undo.*;
 
-
 public class JTextFieldRegularPopupMenu {
-    public static void addTo(JTextField txtField) 
-    {
-        JPopupMenu popup = new JPopupMenu();
-        UndoManager undoManager = new UndoManager();
-        txtField.getDocument().addUndoableEditListener(undoManager);
+	public static void addTo(JTextField txtField) {
+		JPopupMenu popup = new JPopupMenu();
+		UndoManager undoManager = new UndoManager();
+		txtField.getDocument().addUndoableEditListener(undoManager);
 
-        Action undoAction = new AbstractAction("Undo") {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (undoManager.canUndo()) {
-                    undoManager.undo();
-                }
-                else {
-                   System.out.println("No Undo Buffer.");
-                }
-            }
-        };
+		Action undoAction = new AbstractAction("Undo") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
-       Action copyAction = new AbstractAction("Copy") {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtField.copy();
-            }
-        };
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				if (undoManager.canUndo()) {
+					undoManager.undo();
+				} else {
+					System.out.println("No Undo Buffer.");
+				}
+			}
+		};
 
-        Action cutAction = new AbstractAction("Cut") {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtField.cut();
-            }
-        };
+		Action copyAction = new AbstractAction("Copy") {
+			/**
+			* 
+			*/
+			private static final long serialVersionUID = 1L;
 
-        Action pasteAction = new AbstractAction("Paste") {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtField.paste();
-            }
-        };
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				txtField.copy();
+			}
+		};
 
-        Action selectAllAction = new AbstractAction("Select All") {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtField.selectAll();
-            }
-        };
+		Action cutAction = new AbstractAction("Cut") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
-        cutAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
-        copyAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
-        pasteAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
-        selectAllAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				txtField.cut();
+			}
+		};
 
-        popup.add (undoAction);
-        popup.addSeparator();
-        popup.add (cutAction);
-        popup.add (copyAction);
-        popup.add (pasteAction);
-        popup.addSeparator();
-        popup.add (selectAllAction);
+		Action pasteAction = new AbstractAction("Paste") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
-       txtField.setComponentPopupMenu(popup);
-    }
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				txtField.paste();
+			}
+		};
+
+		Action selectAllAction = new AbstractAction("Select All") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				txtField.selectAll();
+			}
+		};
+
+		cutAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
+		copyAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
+		pasteAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
+		selectAllAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+
+		popup.add(cutAction);
+		popup.add(copyAction);
+		popup.add(pasteAction);
+		popup.addSeparator();
+		popup.add(selectAllAction);
+		popup.addSeparator();
+		popup.add(undoAction);
+		txtField.setComponentPopupMenu(popup);
+	}
 }
