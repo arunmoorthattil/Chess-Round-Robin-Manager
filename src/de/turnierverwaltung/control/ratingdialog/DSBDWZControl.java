@@ -43,7 +43,6 @@ import de.turnierverwaltung.model.rating.CSVPlayerArrayList;
 import de.turnierverwaltung.model.rating.CSVPlayerList;
 import de.turnierverwaltung.model.rating.CSVVereine;
 import de.turnierverwaltung.model.rating.CSVVereineList;
-import de.turnierverwaltung.model.rating.DSBDWZClub;
 import de.turnierverwaltung.model.rating.DWZData;
 import de.turnierverwaltung.model.rating.SQLitePlayerDWZList;
 import de.turnierverwaltung.model.rating.SortCSVVereine;
@@ -207,7 +206,7 @@ public class DSBDWZControl {
 
 		try {
 			spielerDewisView = new DSBDWZPlayerView(Messages.getString("DewisDialogControl.10"));
-			DSBDWZClub verein = null;
+//			DSBDWZClub verein = null;
 			players = null;
 			dwzDataArray = null;
 			if (csvFiles == true) {
@@ -229,8 +228,8 @@ public class DSBDWZControl {
 				}
 
 			} else {
-				verein = new DSBDWZClub(zps);
-				players = verein.getSpieler();
+//				verein = new DSBDWZClub(zps);
+//				players = verein.getSpieler();
 			}
 			final SQLPlayerControl sqlpc = new SQLPlayerControl(mainControl);
 
