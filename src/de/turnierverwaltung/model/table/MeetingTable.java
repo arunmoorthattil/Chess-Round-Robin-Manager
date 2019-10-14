@@ -37,6 +37,7 @@ public class MeetingTable {
 	private String blackColumnName;
 	private String resultColumnName;
 	private String meetingColumnName;
+	private String spielfrei;
 	private ICal iCalendar;
 
 	/**
@@ -51,12 +52,13 @@ public class MeetingTable {
 	 */
 	public MeetingTable(final Tournament turnier, final Group gruppe, final String roundColumnName,
 			final String whiteColumnName, final String blackColumnName, final String resultColumnName,
-			final String meetingColumnName) {
+			final String meetingColumnName, String spielfrei) {
 		this.roundColumnName = roundColumnName;
 		this.whiteColumnName = whiteColumnName;
 		this.blackColumnName = blackColumnName;
 		this.resultColumnName = resultColumnName;
 		this.meetingColumnName = meetingColumnName;
+		this.spielfrei = spielfrei;
 		this.turnier = turnier;
 		this.gruppe = gruppe;
 		this.gruppe.getSpieler();
@@ -105,10 +107,10 @@ public class MeetingTable {
 			for (int y = i + 1; y < spielerAnzahl; y++) {
 				String event = "";
 				if (partien[index].getSpielerWeiss().getSpielerId() <= TournamentConstants.SPIELFREI_ID) {
-					partien[index].getSpielerWeiss().setName(TournamentConstants.SPIELFREI);
+					partien[index].getSpielerWeiss().setName(this.spielfrei);
 				}
 				if (partien[index].getSpielerSchwarz().getSpielerId() <= TournamentConstants.SPIELFREI_ID) {
-					partien[index].getSpielerSchwarz().setName(TournamentConstants.SPIELFREI);
+					partien[index].getSpielerSchwarz().setName(this.spielfrei);
 				}
 				tabellenMatrix[0][index + 1] = Integer.toString(partien[index].getRunde());
 				tabellenMatrix[1][index + 1] = partien[index].getSpielerWeiss().getName();

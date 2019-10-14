@@ -61,8 +61,9 @@ public class ActionListenerSettingsControl {
 			public void actionPerformed(final ActionEvent arg0) {
 				mainControl.getPropertiesControl().writeSettingsDialogProperties(dialog.getBounds().x,
 						dialog.getBounds().y, dialog.getBounds().width, dialog.getBounds().height);
-				dialog.dispose();
+
 				final PropertiesControl ppC = mainControl.getPropertiesControl();
+				ppC.readProperties();
 				final SettingsView settingsView = esControl.getEigenschaftenView();
 				ppC.setTableComumnBlack(settingsView.getBlackTextField().getText());
 				ppC.setTableComumnWhite(settingsView.getWhiteTextField().getText());
@@ -87,10 +88,10 @@ public class ActionListenerSettingsControl {
 				ppC.checkCrossTableColumnForDoubles();
 				ppC.checkMeetingTableColumnForDoubles();
 				ppC.setCSSTable(settingsView.getTableCSSTextField().getText());
-
+				
 				ppC.writeProperties();
 				esControl.setTableColumns();
-
+				dialog.dispose();
 			}
 
 		});
@@ -162,7 +163,7 @@ public class ActionListenerSettingsControl {
 						if (newFile.equals(".sqlite")) {
 							esControl.getEigenschaftenView().getConvertDWZToSQLITEButton().setEnabled(false);
 						} else {
-							
+
 							mainControl.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 							final DWZListToSQLITEControl dwzL = new DWZListToSQLITEControl(mainControl);
 							dwzL.convertDWZListToSQLITE();
@@ -217,7 +218,7 @@ public class ActionListenerSettingsControl {
 						if (newFile.equals(".sqlite")) {
 							esControl.getEigenschaftenView().getConvertELOToSQLITEButton().setEnabled(false);
 						} else {
-							
+
 							final ELOListToSQLITEControl eloL = new ELOListToSQLITEControl(mainControl);
 							eloL.convertELOListToSQLITE();
 							esControl.getEigenschaftenView()

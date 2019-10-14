@@ -1,6 +1,5 @@
 package de.turnierverwaltung.control.tournamenttable;
 
-
 //JKlubTV - Ein Programm zum verwalten von Schach Turnieren
 //Copyright (C) 2015  Martin Schmuck m_schmuck@gmx.net
 //
@@ -217,16 +216,19 @@ public class MeetingTableControl {
 	@SuppressWarnings("rawtypes")
 	public void makeSimpleTableView(final int gruppenNummer) {
 		PropertiesControl ppC = mainControl.getPropertiesControl();
+		ppC.readProperties();
 		String roundColumnName = ppC.getTableComumnRound();
 		String whiteColumnName = ppC.getTableComumnWhite();
 		String blackColumnName = ppC.getTableComumnBlack();
 		String resultColumnName = ppC.getTableComumnResult();
 		String meetingColumnName = ppC.getTableComumnMeeting();
+		String spielfrei = ppC.getSpielfrei();
 		this.terminTabelle[gruppenNummer] = new MeetingTable(turnier,
 				mainControl.getTournament().getGruppe()[gruppenNummer], roundColumnName, whiteColumnName,
-				blackColumnName, resultColumnName, meetingColumnName);
+				blackColumnName, resultColumnName, meetingColumnName, spielfrei);
 		this.mainControl.setMeetingTable(terminTabelle);
-		simpleTableView[gruppenNummer] = new MeetingTableView(new MeetingTableModel(this.terminTabelle[gruppenNummer]));
+		simpleTableView[gruppenNummer] = new MeetingTableView(
+				new MeetingTableModel(this.terminTabelle[gruppenNummer], spielfrei));
 		simpleTurnierTabelleView = mainControl.getCrossTableView();
 
 		int abstand = mainControl.getPropertiesControl().getTabellenAbstand();

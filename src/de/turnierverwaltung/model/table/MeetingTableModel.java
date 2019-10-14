@@ -32,19 +32,20 @@ public class MeetingTableModel extends DefaultTableModel {
 	private MeetingTable terminTabelle;
 	private String tabellenMatrix[][];
 	private Object[] rowData;
+	private String spielfrei;
 
 	/**
 	 * 
 	 * @param terminTabelle
 	 */
-	public MeetingTableModel(MeetingTable terminTabelle) {
+	public MeetingTableModel(MeetingTable terminTabelle, String spielfrei) {
 		super();
 		this.terminTabelle = terminTabelle;
 		this.zeile = this.terminTabelle.getZeilenAnzahl();
 		this.spalte = this.terminTabelle.getSpaltenAnzahl();
 		rowData = new Object[this.spalte];
 		tabellenMatrix = this.terminTabelle.getTabellenMatrix();
-
+		this.spielfrei = spielfrei;
 		initModelData();
 	}
 
@@ -87,8 +88,8 @@ public class MeetingTableModel extends DefaultTableModel {
 			icE = true;
 
 		}
-		if (this.getValueAt(rowIndex, 1).equals(TournamentConstants.SPIELFREI)
-				|| this.getValueAt(rowIndex, 2).equals(TournamentConstants.SPIELFREI)) {
+		if (this.getValueAt(rowIndex, 1).equals(spielfrei)
+				|| this.getValueAt(rowIndex, 2).equals(spielfrei)) {
 			if (columnIndex <= 4) {
 				icE = false;
 			}
@@ -117,7 +118,7 @@ public class MeetingTableModel extends DefaultTableModel {
 //			return event.getDate();
 //
 //		} else {
-			return tabellenMatrix[col][row];
+		return tabellenMatrix[col][row];
 //		}
 	}
 
@@ -143,7 +144,7 @@ public class MeetingTableModel extends DefaultTableModel {
 			if (!tabellenMatrix[col][row].equals((String) value)) {
 				if (col == 4) {
 					EventDate event = new EventDate();
-					
+
 					event.setDate((String) value);
 					tabellenMatrix[col][row] = event.getDateString();
 				} else {

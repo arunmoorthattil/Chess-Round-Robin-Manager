@@ -21,10 +21,12 @@ public class SettingsControl {
 	public SettingsControl(final MainControl mainControl) {
 		this.mainControl = mainControl;
 		eigenschaftenView = new SettingsView();
+
 		actionListenerControl = new ActionListenerSettingsControl(this.mainControl, this);
 		itemListenerControl = new ItemListenerSettingsControl(this.mainControl, this);
 		sqlitePlayerEloList = new SQLitePlayerELOList();
 		sqlitePlayerDWZList = new SQLitePlayerDWZList();
+		setTableColumns();
 	}
 
 	public ActionListenerSettingsControl getActionListenerControl() {
@@ -53,6 +55,7 @@ public class SettingsControl {
 
 	public void setTableColumns() {
 		final PropertiesControl ppC = mainControl.getPropertiesControl();
+		ppC.readProperties();
 		eigenschaftenView.getWhiteTextField().setText(ppC.getTableComumnWhite());
 		eigenschaftenView.getBlackTextField().setText(ppC.getTableComumnBlack());
 		eigenschaftenView.getMeetingTextField().setText(ppC.getTableComumnMeeting());
@@ -68,7 +71,7 @@ public class SettingsControl {
 		eigenschaftenView.getResultTextField().setText(ppC.getTableComumnResult());
 		eigenschaftenView.getRoundTextField().setText(ppC.getTableComumnRound());
 		eigenschaftenView.getSpielfreiTextField().setText(ppC.getSpielfrei());
-		
+
 		eigenschaftenView.getForenameLengthBox().setValue(ppC.getCutForename());
 		eigenschaftenView.getSurnameLengthBox().setValue(ppC.getCutSurname());
 		final String eloDate = "Ratinglist from:" + sqlitePlayerEloList.getELODate(ppC.getPathToPlayersELO());
