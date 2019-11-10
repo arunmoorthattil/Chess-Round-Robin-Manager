@@ -19,7 +19,7 @@ public class WertungsdifferenzenPunktePartienModel {
 		{
 			int[] col = { -191, -274, -325, -362, -391, -414, -434, -451, -465, -478, -490, -500, -510, -519, -527,
 					-534, -542, -548, -554 };
-			hmap.put("0,5", col);
+			hmap.put(",5", col);
 		}
 
 		{
@@ -216,7 +216,7 @@ public class WertungsdifferenzenPunktePartienModel {
 
 		{
 			int[] col = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-					NULL, 451, 354, 293 };
+					NULL, NULL, 451, 354, 293 };
 			hmap.put("17,0", col);
 		}
 
@@ -264,7 +264,7 @@ public class WertungsdifferenzenPunktePartienModel {
 
 		String key = numberFormat.format(anzahlPunkte);
 
-//		System.out.println(key);
+//		System.out.println(key + " " + Integer.toString(anzahlPartien) + " " + anzahlPunkte);
 
 		return hmap.get(key)[anzahlPartien - 2];
 
