@@ -20,7 +20,6 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 import de.turnierverwaltung.model.EventDate;
-import de.turnierverwaltung.model.TournamentConstants;
 
 public class MeetingTableModel extends DefaultTableModel {
 	/**

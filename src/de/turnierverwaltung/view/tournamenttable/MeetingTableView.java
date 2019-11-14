@@ -1,7 +1,7 @@
 package de.turnierverwaltung.view.tournamenttable;
 //JKlubTV - Ein Programm zum verwalten von Schach Turnieren
 
-
+import java.util.Comparator;
 
 //Copyright (C) 2015  Martin Schmuck m_schmuck@gmx.net
 //
@@ -105,7 +105,7 @@ public class MeetingTableView<M> extends JPanel {
 		table = new JTable();
 
 		table.setModel(this.simpleTerminTabelle);
-		
+
 		table.setLocale(getDefaultLocale());
 		comboBox = new JComboBox<String>();
 		comboBox.addItem(TournamentConstants.KEIN_ERGEBNIS);
@@ -199,7 +199,6 @@ public class MeetingTableView<M> extends JPanel {
 	public void setColumnWidth() {
 
 		int columnCount = table.getColumnCount();
-		
 
 		for (int i = 0; i < columnCount; i++) {
 
@@ -207,20 +206,32 @@ public class MeetingTableView<M> extends JPanel {
 			if (i == 3) {
 				c.setCellEditor(new DefaultCellEditor(comboBox));
 			}
-			if (i == 4) {
-////				JDateChooserRenderer datePanel = new JDateChooserRenderer();
-////
-////				JDateChooserCellEditor cellEditor = new JDateChooserCellEditor();
-////				
-////				c.setCellRenderer(datePanel);
-////				c.setCellEditor(cellEditor);
-//				
-//				c.setLocale(getDefaultLocale());
-			}
+//			if (i == 4) {
+//
+//			}
 
 		}
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		sorter.setComparator(4, new Comparator<String>() {
+
+			@Override
+			public int compare(String arg0, String arg1) {
+				int tag1 = Integer.parseInt(arg0.substring(0, 2));
+				int monat1 = Integer.parseInt(arg0.substring(3, 5));
+				int jahr1 = Integer.parseInt(arg0.substring(6, 10));
+				int gesamt1 = jahr1 * 10000 + monat1 * 100 + tag1;
+
+				int tag2 = Integer.parseInt(arg1.substring(0, 2));
+				int monat2 = Integer.parseInt(arg1.substring(3, 5));
+				int jahr2 = Integer.parseInt(arg1.substring(6, 10));
+				int gesamt2 = jahr2 * 10000 + monat2 * 100 + tag2;
+				System.out.print(tag1 + " " + monat1 + " " + jahr1 + "///" + gesamt1 + "---");
+
+				return gesamt1 - gesamt2;
+			}
+
+		});
 		sorter.setRowFilter(RowFilter.regexFilter("\\d", 0));
 
 		table.setRowSorter(sorter);
@@ -249,97 +260,4 @@ public class MeetingTableView<M> extends JPanel {
 		this.table = table;
 	}
 
-//	public JDateChooser getDateChooser() {
-//		return dateChooser;
-//	}
-//
-//	public void setDateChooser(JDateChooser dateChooser) {
-//		this.dateChooser = dateChooser;
-//	}
-	/**
-	 * A CellEditor for tables, using a JDateChooser.
-	 * 
-	 * @author Kai Toedter
-	 * @version $LastChangedRevision: 100 $
-	 * @version $LastChangedDate: 2006-06-04 14:36:06 +0200 (So, 04 Jun 2006) $
-	 */
-//	public class JDateChooserCellEditor extends AbstractCellEditor implements TableCellEditor {
-//
-//		private static final long serialVersionUID = 917881575221755609L;
-//
-//		private JDateChooser dateChooser;
-//
-//		public JDateChooserCellEditor(JDateChooser dateChooser) {
-//			super();
-//			this.dateChooser = dateChooser;
-//			dateChooser.setLocale(Locale.getDefault());
-//		}
-//
-//		public JDateChooserCellEditor() {
-//			dateChooser = new JDateChooser();
-//			dateChooser.setLocale(Locale.getDefault());
-//			
-//		}
-//
-//		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
-//				int column) {
-//
-//			Date date = null;
-//			if (value instanceof Date)
-//				date = (Date) value;
-//
-//			dateChooser.setDate(date);
-//			
-//			return dateChooser;
-//		}
-//
-//		public Object getCellEditorValue() {
-//			return dateChooser.getDate();
-//		}
-//	}
-//
-//	class JDateChooserRenderer implements TableCellRenderer {
-//
-//		private JDateChooser dateChooser;
-//
-//		public JDateChooserRenderer(JDateChooser dateChooser) {
-//			super();
-//			this.dateChooser = dateChooser;
-//		}
-//
-//		public JDateChooserRenderer() {
-//			dateChooser = new JDateChooser();
-//			dateChooser.setLocale(Locale.getDefault());
-//		}
-//
-//		public boolean isCellEditable(int rowIndex, int columnIndex) {
-//			return true;
-//		}
-//
-//		@Override
-//		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-//				int row, int column) {
-//
-//			dateChooser.setDate((Date) value);
-//			
-//			try {
-//
-//				Robot robot = new Robot();
-//				robot.keyPress(KeyEvent.VK_F2);
-//				robot.keyRelease(KeyEvent.VK_F2);
-//			} catch (AWTException e1) {
-//				e1.printStackTrace();
-//			}
-//
-//			return dateChooser;
-//		}
-//
-////		@Override
-////		public Object getCellEditorValue() {
-////			return dateChooser.getDate();
-////		}
-//
-//	}
-
-	
 }
