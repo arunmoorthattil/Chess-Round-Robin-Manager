@@ -57,31 +57,6 @@ import de.turnierverwaltung.view.Messages;
 import de.turnierverwaltung.view.TitleLabelView;
 
 public class MeetingTableView<M> extends JPanel {
-//	public class DateLabelFormatter extends AbstractFormatter {
-//
-//		/**
-//		 * 
-//		 */
-//		private static final long serialVersionUID = 1L;
-//		private String datePattern = "dd.MM.yyy"; //$NON-NLS-1$
-//		private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-//
-//		@Override
-//		public Object stringToValue(String text) throws ParseException {
-//			return dateFormatter.parseObject(text);
-//		}
-//
-//		@Override
-//		public String valueToString(Object value) throws ParseException {
-//			if (value != null) {
-//				Calendar cal = (Calendar) value;
-//				return dateFormatter.format(cal.getTime());
-//			}
-//
-//			return "";
-//		}
-//
-//	}
 
 	/**
 	 * 
@@ -95,7 +70,6 @@ public class MeetingTableView<M> extends JPanel {
 	private MeetingTableModel simpleTerminTabelle;
 	private Properties property;
 	private TitleLabelView statusLabel;
-//	private JDateChooser dateChooser;
 
 	public MeetingTableView(MeetingTableModel simpleTerminTabelle) {
 
@@ -226,7 +200,6 @@ public class MeetingTableView<M> extends JPanel {
 				int monat2 = Integer.parseInt(arg1.substring(3, 5));
 				int jahr2 = Integer.parseInt(arg1.substring(6, 10));
 				int gesamt2 = jahr2 * 10000 + monat2 * 100 + tag2;
-				System.out.print(tag1 + " " + monat1 + " " + jahr1 + "///" + gesamt1 + "---");
 
 				return gesamt1 - gesamt2;
 			}
