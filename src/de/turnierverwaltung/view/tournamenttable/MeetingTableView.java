@@ -191,17 +191,28 @@ public class MeetingTableView<M> extends JPanel {
 
 			@Override
 			public int compare(String arg0, String arg1) {
-				int tag1 = Integer.parseInt(arg0.substring(0, 2));
-				int monat1 = Integer.parseInt(arg0.substring(3, 5));
-				int jahr1 = Integer.parseInt(arg0.substring(6, 10));
-				int gesamt1 = jahr1 * 10000 + monat1 * 100 + tag1;
+				int gesamt1 = 19750101;
+				int gesamt2 = 19740101;
+				try {
+					int tag1 = Integer.parseInt(arg0.substring(0, 2));
+					int monat1 = Integer.parseInt(arg0.substring(3, 5));
+					int jahr1 = Integer.parseInt(arg0.substring(6, 10));
+					gesamt1 = jahr1 * 10000 + monat1 * 100 + tag1;
 
-				int tag2 = Integer.parseInt(arg1.substring(0, 2));
-				int monat2 = Integer.parseInt(arg1.substring(3, 5));
-				int jahr2 = Integer.parseInt(arg1.substring(6, 10));
-				int gesamt2 = jahr2 * 10000 + monat2 * 100 + tag2;
+					int tag2 = Integer.parseInt(arg1.substring(0, 2));
+					int monat2 = Integer.parseInt(arg1.substring(3, 5));
+					int jahr2 = Integer.parseInt(arg1.substring(6, 10));
+					gesamt2 = jahr2 * 10000 + monat2 * 100 + tag2;
 
+				} catch (NumberFormatException e1) {
+					gesamt1 = 19750101;
+					gesamt2 = 19740101;
+				} catch (StringIndexOutOfBoundsException e2) {
+					gesamt1 = 19750101;
+					gesamt2 = 19740101;
+				}
 				return gesamt1 - gesamt2;
+
 			}
 
 		});
